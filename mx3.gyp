@@ -25,6 +25,33 @@
       },
     },
     {
+      'target_name': 'libmx3_wrt',
+      'type': 'shared_library',
+      'msvc_enable_winrt': 1,
+      'msvs_application_type_revision': '10.0',
+      'msvs_target_platform_version':'10.0.10240.0',
+      'msvs_target_platform_minversion':'10.0.10240.0'
+      'dependencies': [
+        'deps/djinni/support-lib/support_lib.gyp:djinni_jni',
+        'libmx3',
+      ],
+      'ldflags' : [ '-llog' ],
+      'sources': [
+        '<!@(python glob.py winrt/src *.cpp *.hpp)',
+        '<!@(python glob.py winrt/include *.hpp)',
+      ],
+      'include_dirs': [
+        'include',
+        'src/interface',
+      ],
+      'all_dependent_settings': {
+        'include_dirs': [
+          'include',
+          'src/interface',
+        ],
+      },
+    },
+    {
       'target_name': 'libmx3_objc',
       'type': 'static_library',
       'conditions': [],
